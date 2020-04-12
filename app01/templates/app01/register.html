@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--应用bootstrap-cdn-3.4.1样式:https://www.bootcdn.cn/twitter-bootstrap/-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        .account {
+            width: 400px;
+            margin: 0 auto;
+        }
+    </style><!--设置div样式-->
+    <title>注册</title>
+</head>
+<body>
+<div class="account">
+    <h1 style="text-align: center;">注册</h1>
+    <form>
+        {% for field in form %}<!--循环输出所有字段-->
+            {% if field.name == 'code' %} <!--如果出现code(验证码)字段就在后面加一个按钮-->
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    <div class="clearfix"><!--clearfix清除浮动-->
+                        <div class="col-md-6" style="padding-left: 0;">{{ field }}</div><!--col-md-6应用栅格系统-->
+                        <div class="col-md-6"><input type="button" class="btn btn-default" value="点击获取验证码"></div>
+                    </div>
+                </div>
+            {% else %}<!--如果没出现code(验证码)字段就还是显示一个框-->
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">注 册</button><!--按钮样式btn btn-primary-->
+    </form>
+
+</div>
+</body>
+</html>
